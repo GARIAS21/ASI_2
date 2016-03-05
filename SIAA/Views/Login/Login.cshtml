@@ -1,0 +1,53 @@
+﻿@model SIAA.CORE_USUARIOS
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    if (@ViewBag.Message != null)
+	{
+		 <div style="border:1px solid red">
+             @ViewBag.Message
+         </div>
+	}
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(a => a.USUARIO)
+            </td>
+            <td>
+                @Html.TextBoxFor(a => a.USUARIO)
+            </td>
+            <td>
+                @Html.ValidationMessageFor(a => a.USUARIO)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(a => a.CONTRASENA)
+            </td>
+            <td>
+                @Html.TextBoxFor(a => a.CONTRASENA)
+            </td>
+            <td>
+                @Html.ValidationMessageFor(a => a.CONTRASENA)
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="submit" value="Login" />
+            </td>
+            <td>
+                @Html.ValidationMessageFor(a => a.USUARIO)
+            </td>
+        </tr>
+    </table>
+}

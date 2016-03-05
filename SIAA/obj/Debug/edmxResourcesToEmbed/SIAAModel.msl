@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="atencion_ciudadanaModelStoreContainer" CdmEntityContainer="atencionCiudadanaEntities">
+    <EntitySetMapping Name="CORE_ROLES">
+      <EntityTypeMapping TypeName="atencion_ciudadanaModel.CORE_ROLES">
+        <MappingFragment StoreEntitySet="CORE_ROLES">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ROL_DESCRIPTION" ColumnName="ROL_DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CORE_USUARIOS">
+      <EntityTypeMapping TypeName="atencion_ciudadanaModel.CORE_USUARIOS">
+        <MappingFragment StoreEntitySet="CORE_USUARIOS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+          <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
