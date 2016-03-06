@@ -11,15 +11,27 @@ namespace SIAA
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class CORE_USUARIOS
     {
-        [Key]
-        public int ID { get; set; }
-        [Required(ErrorMessage = "El nombre de usuario es Obligatorio")]
-        public string USUARIO { get; set; }
-        [Required(ErrorMessage = "La contraseña es obligatoria")]
-        [DataType(DataType.Password)]
-        public string CONTRASENA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CORE_USUARIOS()
+        {
+            this.CORE_LOGIN = new HashSet<CORE_LOGIN>();
+        }
+    
+        public int ID_USUARIO { get; set; }
+        public string primer_nombre { get; set; }
+        public string segundo_nombre { get; set; }
+        public string primer_apellido { get; set; }
+        public string segundo_apellido { get; set; }
+        public string dui { get; set; }
+        public string nit { get; set; }
+        public bool estatus { get; set; }
+        public Nullable<int> id_rol { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CORE_LOGIN> CORE_LOGIN { get; set; }
+        public virtual CORE_ROLES CORE_ROLES { get; set; }
     }
 }

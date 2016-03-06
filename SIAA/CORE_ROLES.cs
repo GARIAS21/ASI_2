@@ -14,7 +14,16 @@ namespace SIAA
     
     public partial class CORE_ROLES
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CORE_ROLES()
+        {
+            this.CORE_USUARIOS = new HashSet<CORE_USUARIOS>();
+        }
+    
         public int ID { get; set; }
         public string ROL_DESCRIPTION { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CORE_USUARIOS> CORE_USUARIOS { get; set; }
     }
 }

@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="atencion_ciudadanaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CORE_LOGIN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USUARIO" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="CONTRASENA" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="ID_CORE_USUARIO" Type="int" />
+  </EntityType>
   <EntityType Name="CORE_ROLES">
     <Key>
       <PropertyRef Name="ID" />
@@ -9,14 +18,53 @@
   </EntityType>
   <EntityType Name="CORE_USUARIOS">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="ID_USUARIO" />
     </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="USUARIO" Type="varchar" MaxLength="25" Nullable="false" />
-    <Property Name="CONTRASENA" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="ID_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="primer_nombre" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="segundo_nombre" Type="varchar" MaxLength="30" />
+    <Property Name="primer_apellido" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="segundo_apellido" Type="varchar" MaxLength="30" />
+    <Property Name="dui" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="nit" Type="varchar" MaxLength="17" Nullable="false" />
+    <Property Name="estatus" Type="bit" Nullable="false" />
+    <Property Name="id_rol" Type="int" />
   </EntityType>
+  <Association Name="FK__CORE_LOGI__ID_CO__74AE54BC">
+    <End Role="CORE_USUARIOS" Type="Self.CORE_USUARIOS" Multiplicity="0..1" />
+    <End Role="CORE_LOGIN" Type="Self.CORE_LOGIN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CORE_USUARIOS">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="CORE_LOGIN">
+        <PropertyRef Name="ID_CORE_USUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CORE_USUA__id_ro__71D1E811">
+    <End Role="CORE_ROLES" Type="Self.CORE_ROLES" Multiplicity="0..1" />
+    <End Role="CORE_USUARIOS" Type="Self.CORE_USUARIOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CORE_ROLES">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CORE_USUARIOS">
+        <PropertyRef Name="id_rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="atencion_ciudadanaModelStoreContainer">
+    <EntitySet Name="CORE_LOGIN" EntityType="Self.CORE_LOGIN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CORE_ROLES" EntityType="Self.CORE_ROLES" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CORE_USUARIOS" EntityType="Self.CORE_USUARIOS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__CORE_LOGI__ID_CO__74AE54BC" Association="Self.FK__CORE_LOGI__ID_CO__74AE54BC">
+      <End Role="CORE_USUARIOS" EntitySet="CORE_USUARIOS" />
+      <End Role="CORE_LOGIN" EntitySet="CORE_LOGIN" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CORE_USUA__id_ro__71D1E811" Association="Self.FK__CORE_USUA__id_ro__71D1E811">
+      <End Role="CORE_ROLES" EntitySet="CORE_ROLES" />
+      <End Role="CORE_USUARIOS" EntitySet="CORE_USUARIOS" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

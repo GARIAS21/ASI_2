@@ -1,22 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="atencion_ciudadanaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="CORE_ROLES">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ROL_DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-  </EntityType>
-  <EntityType Name="CORE_USUARIOS">
+  <EntityType Name="CORE_LOGIN">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="USUARIO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="CONTRASENA" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ID_CORE_USUARIO" Type="Int32" />
+    <NavigationProperty Name="CORE_USUARIOS" Relationship="Self.FK__CORE_LOGI__ID_CO__74AE54BC" FromRole="CORE_LOGIN" ToRole="CORE_USUARIOS" />
   </EntityType>
+  <EntityType Name="CORE_ROLES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ROL_DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CORE_USUARIOS" Relationship="Self.FK__CORE_USUA__id_ro__71D1E811" FromRole="CORE_ROLES" ToRole="CORE_USUARIOS" />
+  </EntityType>
+  <EntityType Name="CORE_USUARIOS">
+    <Key>
+      <PropertyRef Name="ID_USUARIO" />
+    </Key>
+    <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="primer_nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="segundo_nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="primer_apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="segundo_apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="dui" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nit" Type="String" MaxLength="17" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="estatus" Type="Boolean" Nullable="false" />
+    <Property Name="id_rol" Type="Int32" />
+    <NavigationProperty Name="CORE_LOGIN" Relationship="Self.FK__CORE_LOGI__ID_CO__74AE54BC" FromRole="CORE_USUARIOS" ToRole="CORE_LOGIN" />
+    <NavigationProperty Name="CORE_ROLES" Relationship="Self.FK__CORE_USUA__id_ro__71D1E811" FromRole="CORE_USUARIOS" ToRole="CORE_ROLES" />
+  </EntityType>
+  <Association Name="FK__CORE_LOGI__ID_CO__74AE54BC">
+    <End Role="CORE_USUARIOS" Type="Self.CORE_USUARIOS" Multiplicity="0..1" />
+    <End Role="CORE_LOGIN" Type="Self.CORE_LOGIN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CORE_USUARIOS">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="CORE_LOGIN">
+        <PropertyRef Name="ID_CORE_USUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CORE_USUA__id_ro__71D1E811">
+    <End Role="CORE_ROLES" Type="Self.CORE_ROLES" Multiplicity="0..1" />
+    <End Role="CORE_USUARIOS" Type="Self.CORE_USUARIOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CORE_ROLES">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CORE_USUARIOS">
+        <PropertyRef Name="id_rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="atencionCiudadanaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CORE_LOGIN" EntityType="Self.CORE_LOGIN" />
     <EntitySet Name="CORE_ROLES" EntityType="Self.CORE_ROLES" />
     <EntitySet Name="CORE_USUARIOS" EntityType="Self.CORE_USUARIOS" />
+    <AssociationSet Name="FK__CORE_LOGI__ID_CO__74AE54BC" Association="Self.FK__CORE_LOGI__ID_CO__74AE54BC">
+      <End Role="CORE_USUARIOS" EntitySet="CORE_USUARIOS" />
+      <End Role="CORE_LOGIN" EntitySet="CORE_LOGIN" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CORE_USUA__id_ro__71D1E811" Association="Self.FK__CORE_USUA__id_ro__71D1E811">
+      <End Role="CORE_ROLES" EntitySet="CORE_ROLES" />
+      <End Role="CORE_USUARIOS" EntitySet="CORE_USUARIOS" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

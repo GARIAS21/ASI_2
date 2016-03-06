@@ -16,13 +16,13 @@ namespace SIAA.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(CORE_USUARIOS user)
+        public ActionResult Login(CORE_LOGIN user)
         {
             if (ModelState.IsValid)
             {
                 using (atencionCiudadanaEntities db = new atencionCiudadanaEntities())
                 {
-                    var usr = db.CORE_USUARIOS.Where(u => u.USUARIO.Equals(user.USUARIO) && u.CONTRASENA.Equals(user.CONTRASENA)).FirstOrDefault();
+                    var usr = db.CORE_LOGIN.Where(u => u.USUARIO.Equals(user.USUARIO) && u.CONTRASENA.Equals(user.CONTRASENA)).FirstOrDefault();
                     if (usr != null)
                     {
                         Session["UserId"] = usr.ID.ToString();
@@ -31,7 +31,7 @@ namespace SIAA.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Usuario o contraseña invalida, o usuario inactivo");
+                        ViewBag.Error = "Usuario o contraseña invalida, o usuario inactivo";
                     }
                 }               
             }

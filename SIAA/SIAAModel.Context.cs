@@ -25,6 +25,7 @@ namespace SIAA
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<CORE_LOGIN> CORE_LOGIN { get; set; }
         public virtual DbSet<CORE_ROLES> CORE_ROLES { get; set; }
         public virtual DbSet<CORE_USUARIOS> CORE_USUARIOS { get; set; }
     }

@@ -1,6 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="atencion_ciudadanaModelStoreContainer" CdmEntityContainer="atencionCiudadanaEntities">
+    <EntitySetMapping Name="CORE_LOGIN">
+      <EntityTypeMapping TypeName="atencion_ciudadanaModel.CORE_LOGIN">
+        <MappingFragment StoreEntitySet="CORE_LOGIN">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+          <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
+          <ScalarProperty Name="ID_CORE_USUARIO" ColumnName="ID_CORE_USUARIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="CORE_ROLES">
       <EntityTypeMapping TypeName="atencion_ciudadanaModel.CORE_ROLES">
         <MappingFragment StoreEntitySet="CORE_ROLES">
@@ -12,9 +22,15 @@
     <EntitySetMapping Name="CORE_USUARIOS">
       <EntityTypeMapping TypeName="atencion_ciudadanaModel.CORE_USUARIOS">
         <MappingFragment StoreEntitySet="CORE_USUARIOS">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
-          <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
+          <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+          <ScalarProperty Name="primer_nombre" ColumnName="primer_nombre" />
+          <ScalarProperty Name="segundo_nombre" ColumnName="segundo_nombre" />
+          <ScalarProperty Name="primer_apellido" ColumnName="primer_apellido" />
+          <ScalarProperty Name="segundo_apellido" ColumnName="segundo_apellido" />
+          <ScalarProperty Name="dui" ColumnName="dui" />
+          <ScalarProperty Name="nit" ColumnName="nit" />
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="id_rol" ColumnName="id_rol" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

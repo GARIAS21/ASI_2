@@ -4,9 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c70c27e502b543b0b5cf028c5c7aa503" Name="Diagram1">
-        <EntityTypeShape EntityType="atencion_ciudadanaModel.CORE_ROLES" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="atencion_ciudadanaModel.CORE_USUARIOS" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="2370ea403f4d46c1ab7c03a9922cd0bc" Name="Diagram1">
+        <EntityTypeShape EntityType="atencion_ciudadanaModel.CORE_LOGIN" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="atencion_ciudadanaModel.CORE_ROLES" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="atencion_ciudadanaModel.CORE_USUARIOS" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="atencion_ciudadanaModel.FK__CORE_LOGI__ID_CO__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="atencion_ciudadanaModel.FK__CORE_USUA__id_ro__71D1E811" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
